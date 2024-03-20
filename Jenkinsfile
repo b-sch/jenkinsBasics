@@ -1,12 +1,10 @@
+/* Requires the Docker Pipeline plugin */
 pipeline {
-    agent {
-        docker { image 'node:20.11.1-alpine3.19' }
-        args '-v /var/run/docker.sock:/var/run/docker.sock'
-    }
+    agent { docker { image 'maven:3.9.6-eclipse-temurin-17-alpine' } }
     stages {
-        stage('Test') {
+        stage('build') {
             steps {
-                sh 'node --version'
+                sh 'mvn --version'
             }
         }
     }
